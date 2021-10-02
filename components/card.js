@@ -12,11 +12,17 @@ Vue.component("componente", {
                     <label>Contract Ticker Symbol</label>
                     <input class="form-control mb-2" type="text" :value="item.contract_ticker_symbol" disabled/>
                     <label>Quote Rate</label>
-                    <input class="form-control" type="text" :value="item.quote_rate" disabled />
+                    <input class="form-control" type="text" :value="formatNumber" disabled />
                   </div>
                 </div>
               </div>
             </div>
       `,
   props: ["item"],
+  computed: {
+    formatNumber() {
+      const numerito = numeral(this.item.quote_rate).format("$0,0.00");
+      return numerito;
+    },
+  },
 });
